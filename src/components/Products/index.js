@@ -6,7 +6,10 @@ class Products extends React.Component {
 
   constructor(props) {
     super(props)
+
     this.viewProduct = this.viewProduct.bind(this)
+    this.onNewProduct = this.onNewProduct.bind(this)
+
     this.state = {
       products: [],
       selectedItem: null
@@ -31,6 +34,16 @@ class Products extends React.Component {
        )
   }
 
+  onNewProduct(product) {
+    if (!this.state.products.filter((obj) => {  return obj.asin == product.asin })[0]) {
+      this.setState((prevState) => {
+        return {
+          products: [product, ...prevState.products]
+        }
+      })
+    }
+  }
+
   render() {
     const { products } = this.state
 
@@ -40,7 +53,7 @@ class Products extends React.Component {
 
     return (
       <div>
-        <Search products={this.state.products}></Search>
+        <Search onNewProduct={this.onNewProduct}></Search>
         <div className='products-component__products'>
           {products.map(product => (
             <div key={product.asin} className={"card " + product.status} onClick={() => this.viewProduct(product.asin)}>

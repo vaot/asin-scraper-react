@@ -11,7 +11,7 @@ class Search extends React.Component {
     this.onChange = this.onChange.bind(this)
 
     this.state = {
-      query: '',
+      value: '',
       valid: false,
       changed: false
     }
@@ -21,20 +21,18 @@ class Search extends React.Component {
     let validInput = !!event.target.value && event.target.value.match(ASIN_REGEX)
 
     this.setState({
-      query: event.target.value,
+      value: event.target.value,
       valid: validInput,
       changed: true
     })
   }
 
   fetch() {
-    fetch(`${process.env.REACT_APP_API_URL}/api/v1/products/${this.state.query}/fetch`)
+    fetch(`${process.env.REACT_APP_API_URL}/api/v1/products/${this.state.value}/fetch`)
       .then((res) => res.json())
       .then((result) => {
-        if (!this.props.products.filter((obj) => {  return obj.asin == result.asin })[0]) {
-          this.props.products.push(result)
-        }
-        this.setState({ query: '', valid: false })
+        this.props.onNewProduct(result)
+        this.setState({ valid: false, value: '', changed: false })
       })
   }
 
