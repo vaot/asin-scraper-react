@@ -1,33 +1,89 @@
-.App {
-  text-align: center;
+.navbar {
+  background-color: #e3f2fd;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+.search-component__input input:focus {
+  outline: none;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.search-component__input input {
+  border: none;
+  border-bottom: 1px solid #000;
+  height: 100%;
+  width: 300px;
+}
+
+.search-component {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.search-component {
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.products-component__products {
+  display: flex;
+  width: 95%;
+  margin: auto;
+  flex-flow: row wrap;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.products-component__products .card {
+  width: 300px;
+  margin: 0 0 12px 12px;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  cursor: pointer;
+  position: relative;
+}
+
+.products-component__products .card .inactive-overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  display: inline-flex;
+  justify-content: center;
+}
+
+.products-component__products .card .inactive-overlay span {
+  align-self: center;
+  font-size: 24px;
+  font-weight: bolder;
+}
+
+.products-component__products .card.inactive div {
+  opacity: 0.3;
+}
+
+.products-component__products .card.active .inactive-overlay {
+  display: none;
+}
+
+.products-component__products .card:hover {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.card-image-wrapper {
+  height: 200px;
+  overflow: hidden;
+  max-width: 300px;
+}
+
+.collapse-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+a.disabled {
+  background-color: #bcc4ce;
+  cursor: not-allowed;
+}
+
+.error {
+  height: 10px;
 }
