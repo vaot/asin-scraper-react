@@ -20,7 +20,7 @@ class Products extends React.Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost:3000/api/v1/products")
+    fetch(`${process.env.REACT_APP_API_URL}/api/v1/products`)
       .then(res => res.json())
       .then(
         (result) => {

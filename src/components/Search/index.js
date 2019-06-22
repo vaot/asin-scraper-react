@@ -28,7 +28,7 @@ class Search extends React.Component {
   }
 
   fetch() {
-    fetch(`http://localhost:3000/api/v1/products/${this.state.query}/fetch`)
+    fetch(`${process.env.REACT_APP_API_URL}/api/v1/products/${this.state.query}/fetch`)
       .then((res) => res.json())
       .then((result) => {
         if (!this.props.products.filter((obj) => {  return obj.asin == result.asin })[0]) {

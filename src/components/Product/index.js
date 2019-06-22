@@ -10,7 +10,7 @@ class Product extends React.Component {
   }
 
   componentDidMount() {
-    fetch(`http://localhost:3000/api/v1/products/${this.props.match.params.asin}`)
+    fetch(`${process.env.REACT_APP_API_URL}/api/v1/products/${this.props.match.params.asin}`)
       .then(res => res.json())
       .then(
         (result) => {
