@@ -96,7 +96,10 @@ class Products extends React.Component {
             <div key={product.asin} className={"card " + product.status}>
               <div className='is-clickable' onClick={() => this.viewProduct(product.asin)}>
                 <div className='inactive-overlay'>
-                  <span>Loading...</span>
+                  <span>
+                    <img src={process.env.PUBLIC_URL + "ajax-loader.gif"} />
+                    Loading...
+                  </span>
                 </div>
                 <div className="card-header">
                   {product.asin}
