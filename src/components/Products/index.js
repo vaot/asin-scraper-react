@@ -30,7 +30,11 @@ class Products extends React.Component {
   onProcessedProduct(product) {
     this.setState((prevState) => {
       let index = prevState.products.findIndex((prod) => { return prod.asin == product.asin })
-      prevState.products[index] = product
+      if (index == -1) {
+        prevState.products.unshift(product)
+      } else {
+        prevState.products[index] = product
+      }
 
       return {
         products: prevState.products
