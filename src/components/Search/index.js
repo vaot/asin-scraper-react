@@ -1,4 +1,5 @@
 import React from 'react'
+import ProductService from '../../services/ProductService'
 
 const ASIN_REGEX = /^[0-9a-zA-Z]{10}$/
 
@@ -10,6 +11,7 @@ class Search extends React.Component {
     this.fetch = this.fetch.bind(this)
     this.onChange = this.onChange.bind(this)
 
+    this.productService = new ProductService()
     this.state = {
       value: '',
       valid: false,
@@ -28,7 +30,7 @@ class Search extends React.Component {
   }
 
   fetch() {
-    fetch(`${process.env.REACT_APP_API_URL}/api/v1/products/${this.state.value}/fetch`)
+    this.productService.fetch(this.state.value)
       .then((res) => res.json())
       .then((result) => {
         this.props.onNewProduct(result)

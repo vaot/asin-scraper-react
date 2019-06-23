@@ -1,16 +1,18 @@
 import React from 'react'
+import ProductService from '../../services/ProductService'
 
 class Product extends React.Component {
   constructor(props) {
     super(props)
 
+    this.productService = new ProductService()
     this.state = {
       product: {}
     }
   }
 
   componentDidMount() {
-    fetch(`${process.env.REACT_APP_API_URL}/api/v1/products/${this.props.match.params.asin}`)
+    this.productService.get(this.props.match.params.asin)
       .then(res => res.json())
       .then(
         (result) => {
