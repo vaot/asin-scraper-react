@@ -11,6 +11,7 @@ class Products extends React.Component {
 
     let cable = ActionCable.createConsumer(`ws://${process.env.REACT_APP_API_HOST}/cable`)
 
+    // Receive updates from the backend via action cable.
     cable.subscriptions.create({ channel: 'ProductsChannel' }, {
       received: (data) => {
         this.onProcessedProduct(data.product)
@@ -27,6 +28,11 @@ class Products extends React.Component {
     }
   }
 
+  // When products are processed/scraped we receive them
+  // via action cable and perform this callback.
+  // If the coming product is not in the list, it is coming from a different
+  // client so we just add to the list. If it is in the list, it was created
+  // by this client.
   onProcessedProduct(product) {
     this.setState((prevState) => {
       let index = prevState.products.findIndex((prod) => { return prod.asin == product.asin })
